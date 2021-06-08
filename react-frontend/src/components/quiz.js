@@ -1,15 +1,10 @@
 import React from "react";
 
-const Quiz = () => {
-
-  const eachQuiz = () => {
-    let tempArr = [];
-    
-  }
+const Quiz = ({ quiz }) => {
 
   return (
-    <div className="quiz">
-      
+    <div>
+      <h1>Question</h1>
     </div>
   )
 }

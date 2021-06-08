@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 
 const Register = () => {
 	const [user, setUser] = useState("Nothing yet");
@@ -6,6 +7,7 @@ const Register = () => {
 	const [emailInput, setEmailInput] = useState("");
 	const [passwordInput, setPasswordInput] = useState("");
 	const [passwordMatch, setPasswordMatch] = useState("");
+	const [redirect, setRedirect] = useState(false);
 	const [error, setError] = useState("");
 
 	const handleSubmit = async (event) => {
@@ -15,6 +17,10 @@ const Register = () => {
 		try {
 			if (passwordMatch !== passwordInput) {
 				throw new Error("Password do not match");
+			} 
+			
+			if (!nameInput || !emailInput || !passwordInput) {
+				throw new Error("Empty field");
 			}
 
 			const response = await fetch("http://localhost:5000/users/register", {
@@ -39,7 +45,8 @@ const Register = () => {
 
 			const data = await response.json();
 			setUser(data.data);
-			setError("")
+			setError("");
+			setRedirect(true);
 		} catch (Error) {
 			setError(Error);
 		}
@@ -48,45 +55,44 @@ const Register = () => {
 	const display = () => {
 		if (error) {
 			return <p>Registration Failed! <br />{error.toString()}</p>
-		} else {
-			return user.email ? <p>You have created an account with email {user.email}</p> : <p>try registering</p>
+		} else if (redirect) {
+			return <Redirect to="/login"/>
 		}
 	}
 
 	return (
-		<>
-			<div className="container">
-				<h1>Register</h1>
-				<form onSubmit={handleSubmit} className="container-form">
-					<input type="text"
-						name="name"
-						placeholder="Enter your name here"
-						className="bar"
-						value={nameInput}
-						onChange={(e) => { setNameInput(e.target.value) }} />
-					<input type="text"
-						name="email"
-						placeholder="Enter your email here"
-						className="bar"
-						value={emailInput}
-						onChange={(e) => { setEmailInput(e.target.value) }} />
-					<input type="password"
-						name="password"
-						placeholder="Enter your password here"
-						className="bar"
-						value={passwordInput}
-						onChange={(e) => { setPasswordInput(e.target.value) }} />
-					<input type="password"
-						name="passwordMatch"
-						placeholder="Enter your password again"
-						className="bar"
-						value={passwordMatch}
-						onChange={(e) => { setPasswordMatch(e.target.value) }} />
-					<input type="submit" name="submit" className="form-button" value="Submit" />
-				</form>
-			</div>
+		<div className="container">
+			<h1>Register</h1>
+			<form onSubmit={handleSubmit} className="container-form">
+				<input type="text"
+					name="name"
+					placeholder="Enter your name here"
+					className="bar"
+					value={nameInput}
+					onChange={(e) => { setNameInput(e.target.value) }} />
+				<input type="text"
+					name="email"
+					placeholder="Enter your email here"
+					className="bar"
+					value={emailInput}
+					onChange={(e) => { setEmailInput(e.target.value) }} />
+				<input type="password"
+					name="password"
+					placeholder="Enter your password here"
+					className="bar"
+					value={passwordInput}
+					onChange={(e) => { setPasswordInput(e.target.value) }} />
+				<input type="password"
+					name="passwordMatch"
+					placeholder="Enter your password again"
+					className="bar"
+					value={passwordMatch}
+					onChange={(e) => { setPasswordMatch(e.target.value) }} />
+				<input type="submit" name="submit" className="form-button" value="Submit" />
+			</form>
 			{display()}
-		</>
+			<p className="login-text">Already have an account: <Link to="/login">Login here!</Link></p>
+		</div>
 	);
 }
 

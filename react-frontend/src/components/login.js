@@ -48,28 +48,26 @@ const Login = ({ setUser }) => {
 	}
 
 	return (
-		<>
-			<div className="container">
-				<h1>Login</h1>
-				<form onSubmit={handleSubmit} className="container-form">
-					<input type="text"
-						name="email"
-						placeholder="Enter your email here"
-						className="bar"
-						value={emailInput}
-						onChange={(e) => { setEmailInput(e.target.value) }} />
-					<input type="password"
-						name="password"
-						placeholder="Enter your password here"
-						className="bar"
-						value={passwordInput}
-						onChange={(e) => { setPasswordInput(e.target.value) }} />
-					<input type="submit" name="submit" className="form-button" value="Submit" />
-				</form>
-				{display()}
-				<p className="register-text">Don't have an account yet: <Link to="/register">Register here!</Link></p>
-			</div>
-		</>
+		<div className="container">
+			<h1>Login</h1>
+			<form onSubmit={handleSubmit} className="container-form">
+				<input type="text"
+					name="email"
+					placeholder="Enter your email here"
+					className="bar"
+					value={emailInput}
+					onChange={(e) => { setEmailInput(e.target.value) }} />
+				<input type="password"
+					name="password"
+					placeholder="Enter your password here"
+					className="bar"
+					value={passwordInput}
+					onChange={(e) => { setPasswordInput(e.target.value) }} />
+				<input type="submit" name="submit" className="form-button" value="Submit" />
+			</form>
+			{display()}
+			<p className="register-text">Don't have an account yet: <Link to="/register">Register here!</Link></p>
+		</div>
 	);
 }
 

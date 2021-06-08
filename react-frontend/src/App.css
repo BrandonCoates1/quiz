@@ -4,6 +4,12 @@
     font-family: "Source Sans Pro";
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 .main {
     display: flex;
     flex-direction: column;
@@ -13,7 +19,8 @@
 .navbar {
     display: flex;
     width: 100vw;
-    margin-right: 2em;
+    padding-right: 2em;
+    background-color: rgb(221, 221, 221);
     justify-content: flex-end;
 }
 
@@ -83,7 +90,8 @@
     place-self: center;
 }
 
-.container .register-text {
+.container .register-text,
+.container .login-text {
     font-size: 1rem;
 }
 
@@ -106,4 +114,59 @@
 .login-button {
     font-size: 2rem;
     cursor: pointer;
+}
+
+.quizTitle {
+    margin-top: 4vh;
+}
+
+.quiz {
+    display: grid;
+    height: 70vh;
+    width: 55vw;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(1fr, 4);
+    gap: 1em;
+    margin-top: 2vh;
+}
+
+.card {
+    background-color: rgb(206, 206, 206);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    border-radius: .5em;
+    transition: transform 500ms ease;
+    overflow: hidden;
+}
+
+.card:hover,
+.card:focus-within {
+    transform: scale(1.04);
+}
+
+.card:hover .card-content,
+.card:focus-within .card-content {
+    transform: translateY(35%);
+}
+
+.card-content {
+    height: 70%;
+    width: 100%;
+    transform: translateY(92%);
+    
+    transition: transform 500ms ease;
+}
+
+.card-content *:not(.card-content h2) {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+    transition-delay: 400ms;
+}
+
+.card:hover .card-content *:not(.card-content h2),
+.card:focus-within .card-content *:not(.card-content h2) {
+    opacity: 1;
 }
