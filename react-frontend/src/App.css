@@ -77,9 +77,14 @@
     cursor: pointer;
 }
 
+
 .container p {
     font-size: 1.5rem;
     place-self: center;
+}
+
+.container .register-text {
+    font-size: 1rem;
 }
 
 .info {
@@ -96,4 +101,9 @@
     width: 50vw;
     text-align: center;
     font-size: 1.5rem;
+}
+
+.login-button {
+    font-size: 2rem;
+    cursor: pointer;
 }

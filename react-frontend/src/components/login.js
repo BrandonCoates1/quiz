@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 
-const Login = () => {
-	const [user, setUser] = useState("Nothing yet");
+const Login = ({ setUser }) => {
 	const [emailInput, setEmailInput] = useState("");
 	const [passwordInput, setPasswordInput] = useState("");
 	const [error, setError] = useState("");
+	const [redirect, setRedirect] = useState(false);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -30,8 +31,9 @@ const Login = () => {
 			}
 
 			const data = await response.json();
-			setUser(data.user[0][0]);
-			setError("")
+			setUser(data.user);
+			setError("");
+			setRedirect(true);
 		} catch (Error) {
 			setError(Error);
 		}
@@ -40,8 +42,8 @@ const Login = () => {
 	const display = () => {
 		if (error) {
 			return <p>Login Failed!</p>
-		} else {
-			return user.email ? <p>Hello, {user.name}</p> : <p>try logging in</p>
+		} else if (redirect) {
+			return <Redirect to="/account"/>
 		}
 	}
 
@@ -65,6 +67,7 @@ const Login = () => {
 					<input type="submit" name="submit" className="form-button" value="Submit" />
 				</form>
 				{display()}
+				<p className="register-text">Don't have an account yet: <Link to="/register">Register here!</Link></p>
 			</div>
 		</>
 	);
