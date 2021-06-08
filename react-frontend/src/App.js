@@ -4,12 +4,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/login";
 import Register from "./components/register";
 import Information from "./components/information";
+import QuizChoice from "./components/quizChoice";
 import Quiz from "./components/quiz";
 import Account from "./components/account";
 import './App.css';
 
 const App = () => {
   const [user, setUser] = useState("");
+  const [quiz, setQuiz] = useState("");
 
   return (
     <div className="main">
@@ -17,12 +19,17 @@ const App = () => {
         <div className="navbar">
           <ul>
             <li>
-              <Link to="/quiz" className="navbar-item">Quiz</Link>
+              <Link to="/" className="navbar-item">Home</Link>
             </li>
             {user ?
-              <li>
-                <Link to="/account" className="navbar-item">Account</Link>
-              </li> :
+              <>
+                <li>
+                  <Link to="/quiz" className="navbar-item">Quiz</Link>
+                </li>
+                <li>
+                  <Link to="/account" className="navbar-item">Account</Link>
+                </li> 
+              </> :
               <>
                 <li>
                   <Link to="/login" className="navbar-item">Login</Link>
@@ -35,8 +42,11 @@ const App = () => {
         </div>
 
         <Switch>
+          <Route path="/quiz/play">
+            <Quiz quiz={quiz}/>
+          </Route>
           <Route path="/quiz">
-            <Quiz />
+            <QuizChoice setQuiz={setQuiz} quiz={quiz}/>
           </Route>
           <Route path="/login">
             <Login setUser={setUser} />
@@ -48,7 +58,7 @@ const App = () => {
             <Account user={user} setUser={setUser} />
           </Route>
           <Route path="/">
-            <Information />
+            <Information user={user}/>
           </Route>
         </Switch>
       </Router>
