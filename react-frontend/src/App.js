@@ -5,6 +5,7 @@ import Login from "./components/login";
 import Register from "./components/register";
 import Information from "./components/information";
 import QuizChoice from "./components/quizChoice";
+import Score from "./components/quizScore";
 import Quiz from "./components/quiz";
 import Account from "./components/account";
 import './App.css';
@@ -12,6 +13,8 @@ import './App.css';
 const App = () => {
   const [user, setUser] = useState("");
   const [quiz, setQuiz] = useState("");
+  const [answersGiven, setAnswersGiven] = useState([]);
+
 
   return (
     <div className="main">
@@ -43,7 +46,10 @@ const App = () => {
 
         <Switch>
           <Route path="/quiz/play">
-            <Quiz quiz={quiz}/>
+            <Quiz quiz={quiz} answersGiven={answersGiven} setAnswersGiven={setAnswersGiven}/>
+          </Route>
+          <Route path="/quiz/score">
+            <Score quiz={quiz} answersGiven={answersGiven} setAnswersGiven={setAnswersGiven}/>
           </Route>
           <Route path="/quiz">
             <QuizChoice setQuiz={setQuiz} quiz={quiz}/>
