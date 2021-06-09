@@ -116,11 +116,24 @@
     cursor: pointer;
 }
 
-.quizTitle {
+.quiz-title {
     margin-top: 4vh;
 }
 
-.quiz {
+.container-choice {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10vw;
+}
+
+.scroll-button {
+    height: fit-content;
+    cursor: pointer;
+    font-size: 2em;
+}
+
+.quiz-choice {
     display: grid;
     height: 70vh;
     width: 55vw;
@@ -140,6 +153,10 @@
     border-radius: .5em;
     transition: transform 500ms ease;
     overflow: hidden;
+}
+
+.card * {
+    pointer-events: none;
 }
 
 .card:hover,
@@ -169,4 +186,40 @@
 .card:hover .card-content *:not(.card-content h2),
 .card:focus-within .card-content *:not(.card-content h2) {
     opacity: 1;
+}
+
+.container-play {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-question {
+    display: grid;
+    height: 70vh;
+    width: 55vw;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "question question"
+    "true false";
+}
+
+.question {
+    grid-area: question;
+    place-self: center;
+}
+
+.answer-true,
+.answer-false {
+    cursor: pointer;
+    font-size: 3em;
+}
+
+.answer-true {
+    grid-area: true;
+}
+
+.answer-false {
+    grid-area: false;
 }
