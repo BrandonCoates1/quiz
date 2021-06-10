@@ -12,13 +12,14 @@
 
 .main {
     display: flex;
+    height: fit-content;
     flex-direction: column;
     align-items: center;
 }
 
 .navbar {
     display: flex;
-    width: 100vw;
+    width: 100%;
     padding-right: 2em;
     background-color: rgb(221, 221, 221);
     justify-content: flex-end;
@@ -75,13 +76,16 @@
 .form-button {
     width: fit-content;
     font-size: 1rem;
-    padding: 0;
+    padding: .5em;
+    border-radius: .5em;
+    background-color: rgb(236, 236, 236);
     margin-top: 1em;
     place-self: center;
 }
 
 .form-button:hover {
     cursor: pointer;
+    background-color: rgb(221, 221, 221);
 }
 
 
@@ -93,6 +97,10 @@
 .container .register-text,
 .container .login-text {
     font-size: 1rem;
+}
+
+.link-text {
+    color: inherit;
 }
 
 .info {
@@ -111,9 +119,31 @@
     font-size: 1.5rem;
 }
 
-.login-button {
-    font-size: 2rem;
+button {
+    font-size: 1.5rem;
+    /* font-weight: 900; */
+    border-radius: 1em;
     cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 90vh;
+    align-items: center;
+    padding-top: 3em;
+    font-size: 1.75rem;
+    gap: 2em;
+}
+
+.account button {
+    width: fit-content;
+    font-size: .75em;
 }
 
 .quiz-title {
@@ -129,7 +159,9 @@
 
 .scroll-button {
     height: fit-content;
+    width: 2.9ch;
     cursor: pointer;
+    border-radius: 50%;
     font-size: 2em;
 }
 
@@ -151,6 +183,7 @@
     justify-content: center;
     padding: 0;
     border-radius: .5em;
+    font-size: .85em;
     transition: transform 500ms ease;
     overflow: hidden;
 }
@@ -222,4 +255,30 @@
 
 .answer-false {
     grid-area: false;
+}
+
+.container-score {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 90vh;
+    width: 100%;
+    align-items: center;
+}
+
+.show-button {
+    width: fit-content;
+}
+
+.question-score {
+    display: grid;
+    grid-template-columns: 50% 10% 13% 10%;
+    width: 100%;
+    padding-left: 2em;
+    place-self: flex-start;
+    gap: 2em;
+}
+
+.question-score p {
+    font-size: 1.5rem;
 }

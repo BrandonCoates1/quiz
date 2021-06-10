@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 
-const QuizChoice = ({ setQuiz, quiz }) => {
+const QuizChoice = ({ setQuiz }) => {
   const [redirect, setRedirect] = useState(false);
   const [category, setCategory] = useState([]);
   const [showAmount, setShowAmount] = useState([0, 8]);
@@ -9,6 +9,7 @@ const QuizChoice = ({ setQuiz, quiz }) => {
 
   useEffect(() => {
     getCategories();
+    setQuiz("");
   }, []);
 
   const getCategories = async () => {
@@ -66,7 +67,7 @@ const QuizChoice = ({ setQuiz, quiz }) => {
       category.map((item, index) => {
         if (index >= showAmount[0] && index < showAmount[1]) {
           return (
-            <button className="card" onClick={handleButton} name={item.name} value={index}>
+            <button className="card" onClick={handleButton} name={item.name} value={item.id}>
               <div className="card-content">
                 <h2>{item.name}</h2>
                 <p>This is a quiz topic</p>
