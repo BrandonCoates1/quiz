@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
+:root {
+    --bgr-color: white;
+    --text-color: black;
+    --border-bottom: rgba(0, 0, 0, 0.5);
+    --placeholder-text: rgba(0, 0, 0, 0.5);
+    --button-bgr-color: rgb(201, 201, 201);
+}
+
+body {
+    background-color: var(--bgr-color);
+    color: var(--text-color);
+}
+
 * {
     font-family: "Source Sans Pro";
 }
@@ -21,7 +34,7 @@
     display: flex;
     width: 100%;
     padding-right: 2em;
-    background-color: rgb(221, 221, 221);
+    background-color: var(--button-bgr-color);
     justify-content: flex-end;
 }
 
@@ -31,14 +44,18 @@
     gap: 2em;
 }
 
+.navbar-item {
+    color: var(--text-color);
+}
+
 .navbar-item:link {
     text-decoration: none;
-    color: black;
+    color: var(--text-color);
 }
 
 .navbar-item:visited {
     text-decoration: none !important;
-    color: black;
+    color: var(--text-color);
 }
 
 .navbar-item:hover {
@@ -65,8 +82,19 @@
     height: 3vh;
     padding: .5em;
     font-size: 1rem;
+    background-color: var(--bgr-color);
+    color: var(--text-color);
     border: none;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid var(--border-bottom);
+}
+
+.bar::placeholder {
+    color: var(--placeholder-text);
+}
+
+.bar:-webkit-autofill {
+    box-shadow: 0 0 0 30px var(--bgr-color) inset;
+    -webkit-text-fill-color: var(--text-color);
 }
 
 .bar:focus {
@@ -77,17 +105,22 @@
     width: fit-content;
     font-size: 1rem;
     padding: .5em;
+    border: none;
     border-radius: .5em;
-    background-color: rgb(236, 236, 236);
+    background-color: var(--button-bgr-color);
+    color: var(--text-color);
     margin-top: 1em;
     place-self: center;
 }
 
 .form-button:hover {
     cursor: pointer;
-    background-color: rgb(221, 221, 221);
+    filter: brightness(85%);
 }
 
+.form-button:active {
+    transform: scale(0.97);
+}
 
 .container p {
     font-size: 1.5rem;
@@ -121,8 +154,11 @@
 
 button {
     font-size: 1.5rem;
-    /* font-weight: 900; */
-    border-radius: 1em;
+    border: none;
+    border-radius: 1.5em;
+    padding: 0.5em;
+    background-color: var(--button-bgr-color);
+    color: var(--text-color);
     cursor: pointer;
 }
 
@@ -159,7 +195,7 @@ button:active {
 
 .scroll-button {
     height: fit-content;
-    width: 2.9ch;
+    width: 4.6ch;
     cursor: pointer;
     border-radius: 50%;
     font-size: 2em;
@@ -176,7 +212,7 @@ button:active {
 }
 
 .card {
-    background-color: rgb(206, 206, 206);
+    background-color: var(--button-bgr-color);
     border: none;
     cursor: pointer;
     display: flex;
@@ -247,6 +283,11 @@ button:active {
 .answer-false {
     cursor: pointer;
     font-size: 3em;
+}
+
+.answer-true:hover,
+.answer-false:hover {
+    filter: brightness(85%);
 }
 
 .answer-true {

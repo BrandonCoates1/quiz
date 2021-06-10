@@ -21,12 +21,19 @@ const App = () => {
   });
 
   const toggleDarkmode = () => {
+    let root = document.documentElement;
     if (darkmode) {
-      document.body.style.backgroundColor = "rgb(17, 17, 17)";
-      document.body.style.color = "white";
+      root.style.setProperty("--bgr-color", "rgb(17, 17, 17)");
+      root.style.setProperty("--text-color", "white");
+      root.style.setProperty("--border-bottom", "rgba(255, 255, 255, 0.5)");
+      root.style.setProperty("--placeholder-text", "rgba(255, 255, 255, 0.5)");
+      root.style.setProperty("--button-bgr-color", "rgb(41, 41, 41)");
     } else {
-      document.body.style.backgroundColor = "white";
-      document.body.style.color = "black";
+      root.style.setProperty("--bgr-color", "white");
+      root.style.setProperty("--text-color", "black");
+      root.style.setProperty("--border-bottom", "rgba(0, 0, 0, 0.5)");
+      root.style.setProperty("--placeholder-text", "rgba(0, 0, 0, 0.5)");
+      root.style.setProperty("--button-bgr-color", "rgb(220, 220, 220)");
     }
   }
 
@@ -34,8 +41,8 @@ const App = () => {
     <div className="main">
       <Router>
         <div className="navbar">
+          <button type="button" onClick={() => setDarkmode(!darkmode)} className="darkmode">{darkmode ? "lightmode" : "darkmode"}</button>
           <ul>
-            <button type="button" onClick={() => setDarkmode(!darkmode)} className="darkmode">{darkmode ? "lightmode" : "darkmode"}</button>
             <li>
               <Link to="/" className="navbar-item">Home</Link>
             </li>
