@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 const Register = () => {
-	const [user, setUser] = useState("Nothing yet");
 	const [nameInput, setNameInput] = useState("");
 	const [emailInput, setEmailInput] = useState("");
 	const [passwordInput, setPasswordInput] = useState("");
@@ -43,8 +42,7 @@ const Register = () => {
 				throw new Error(error.error.sqlMessage);
 			}
 
-			const data = await response.json();
-			setUser(data.data);
+			// const data = await response.json();
 			setError("");
 			setRedirect(true);
 		} catch (Error) {
@@ -91,7 +89,7 @@ const Register = () => {
 				<input type="submit" name="submit" className="form-button" value="Submit" />
 			</form>
 			{display()}
-			<p className="login-text">Already have an account: <Link to="/login">Login here!</Link></p>
+			<p className="login-text">Already have an account: <Link to="/login" className="link-text">Login here!</Link></p>
 		</div>
 	);
 }

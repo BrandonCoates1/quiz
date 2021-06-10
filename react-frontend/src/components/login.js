@@ -66,7 +66,7 @@ const Login = ({ setUser }) => {
 				<input type="submit" name="submit" className="form-button" value="Submit" />
 			</form>
 			{display()}
-			<p className="register-text">Don't have an account yet: <Link to="/register">Register here!</Link></p>
+			<p className="register-text">Don't have an account yet: <Link to="/register" className="link-text">Register here!</Link></p>
 		</div>
 	);
 }

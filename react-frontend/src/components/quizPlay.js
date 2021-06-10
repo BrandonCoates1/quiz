@@ -30,7 +30,7 @@ const Quiz = ({ quiz, answersGiven, setAnswersGiven }) => {
   }
 
   const handleAnswerButton = (item, event) => {
-    setAnswersGiven([...answersGiven, {quesiton: item.question, answer: event.target.value, actualAnswer: item.correct_answer}]);
+    setAnswersGiven([...answersGiven, {question: item.question, answer: event.target.value, actualAnswer: item.correct_answer}]);
     if (question === 9) {
       return setRedirect(true)
     }
