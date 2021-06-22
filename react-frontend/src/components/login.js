@@ -26,7 +26,6 @@ const Login = ({ setUser }) => {
 			setPasswordInput("");
 
 			if (response.status !== 200) {
-				console.log(response);
 				throw new Error("Failed to login");
 			}
 

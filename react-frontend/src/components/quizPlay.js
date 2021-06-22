@@ -7,27 +7,25 @@ const Quiz = ({ quiz, answersGiven, setAnswersGiven }) => {
   const [question, setQuestion] = useState(0);
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState("");
-  
+
   useEffect(() => {
-    getApi();
-    setAnswersGiven([]);
-  }, [])
-
-  const getApi = async () => {
-    setError("");
-    try {
-      const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${quiz.category}&type=boolean`);
-      if (response.status !== 200) {
-        throw new Error("Failed to fetch the questions");
+    const getApi = async () => {
+      setError("");
+      try {
+        const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${quiz.category}&type=boolean`);
+        if (response.status !== 200) {
+          throw new Error("Failed to fetch the questions");
+        }
+  
+        const data = await response.json();
+        setQuizData(data.results);
+      } catch (Error) {
+        setError(Error);
       }
-
-      const data = await response.json();
-      setQuizData(data.results);
-    } catch (Error) {
-      console.log(Error);
-      setError(Error);
     }
-  }
+
+    getApi();
+  }, [quiz]);
 
   const handleAnswerButton = (item, event) => {
     setAnswersGiven([...answersGiven, {question: item.question, answer: event.target.value, actualAnswer: item.correct_answer}]);
@@ -39,9 +37,9 @@ const Quiz = ({ quiz, answersGiven, setAnswersGiven }) => {
 
   const displayQuestion = () => {
     return (
-      quizData.filter((item, index) => index === question).map((item) => {
+      quizData.filter((item, index) => index === question).map((item, index) => {
         return (
-          <div className="container-question">
+          <div className="container-question" key={index}>
             <h2 className="question">{`Q${question + 1}. `}{decode(item.question)}</h2>
             <button type="button" className="answer-true" value="True" onClick={(event) => handleAnswerButton(item, event)}>True</button>
             <button type="button" className="answer-false" value="False" onClick={(event) => handleAnswerButton(item, event)}>False</button>
@@ -52,7 +50,7 @@ const Quiz = ({ quiz, answersGiven, setAnswersGiven }) => {
   }
 
   if (error) {
-    getApi();
+    return <p>Error</p>
   }
 
   if (redirect) {
