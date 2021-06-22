@@ -51,4 +51,15 @@ router.post("/login", cors(options), async (req, res) => {
     }
 });
 
+router.post("/delete", cors(options), async (req, res) => {
+    connection.query("SELECT FROM users WHERE email = ?", req.body.email, (error, results) => {
+        if (error) {
+            res.status(500).json({ "message": "not ok", "data": req.body, "error": error });
+            return;
+        }
+
+        res.status(200).json({ "message": "ok", "data": req.body, "response": results })
+    });
+});
+
 export default router

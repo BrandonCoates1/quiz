@@ -44,12 +44,12 @@ const App = () => {
           <button type="button" onClick={() => setDarkmode(!darkmode)} className="darkmode">{darkmode ? "lightmode" : "darkmode"}</button>
           <ul>
             <li>
-              <Link to="/" className="navbar-item">Home</Link>
+              <Link to="/" className="navbar-item"  onClick={() => { setQuiz(""); setAnswersGiven([]) }}>Home</Link>
             </li>
             {user ?
               <>
                 <li>
-                  <Link to="/quiz" className="navbar-item">Quiz</Link>
+                  <Link to="/quiz" className="navbar-item" onClick={() => { setQuiz(""); setAnswersGiven([]) }}>Quiz</Link>
                 </li>
                 <li>
                   <Link to="/account" className="navbar-item">Account</Link>
@@ -71,7 +71,7 @@ const App = () => {
             <Quiz quiz={quiz} answersGiven={answersGiven} setAnswersGiven={setAnswersGiven}/>
           </Route>
           <Route path="/quiz/score">
-            <Score quiz={quiz} answersGiven={answersGiven} setAnswersGiven={setAnswersGiven}/>
+            <Score quiz={quiz} setQuiz={setQuiz} answersGiven={answersGiven} setAnswersGiven={setAnswersGiven}/>
           </Route>
           <Route path="/quiz">
             <QuizChoice setQuiz={setQuiz}/>

@@ -9,8 +9,7 @@ const QuizChoice = ({ setQuiz }) => {
 
   useEffect(() => {
     getCategories();
-    setQuiz("");
-  }, []);
+  });
 
   const getCategories = async () => {
     setError(false);
@@ -64,18 +63,16 @@ const QuizChoice = ({ setQuiz }) => {
       getCategories();
     }
     return (
-      category.map((item, index) => {
-        if (index >= showAmount[0] && index < showAmount[1]) {
-          return (
-            <button className="card" onClick={handleButton} name={item.name} value={item.id}>
-              <div className="card-content">
-                <h2>{item.name}</h2>
-                <p>This is a quiz topic</p>
-                <p>Click to select {item.name}</p>
-              </div>
-            </button>
-          );
-        }
+      category.filter((item, index) => index >= showAmount[0] && index < showAmount[1]).map((item, index) => {
+        return (
+          <button className="card" onClick={handleButton} name={item.name} value={item.id} key={index}>
+            <div className="card-content">
+              <h2>{item.name}</h2>
+              <p>This is a quiz topic</p>
+              <p>Click to select {item.name}</p>
+            </div>
+          </button>
+        );
       })
     );
   }
